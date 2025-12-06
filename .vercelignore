@@ -5,4 +5,8 @@ client/node_modules
 .env.local
 *.log
 .DS_Store
+# Keep server directory for API functions
+!server
+!server/services
+!server/services/**
 

@@ -1,4 +1,10 @@
-const { fetchStats } = require('../../server/services/githubService');
+// Try to require from local utils first, fallback to server directory
+let fetchStats;
+try {
+  fetchStats = require('../_utils/githubService').fetchStats;
+} catch (e) {
+  fetchStats = require('../../server/services/githubService').fetchStats;
+}
 
 // Simple in-memory cache
 const cache = new Map();
