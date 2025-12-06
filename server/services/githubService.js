@@ -3,20 +3,10 @@ const axios = require('axios');
 const GITHUB_API_BASE = 'https://api.github.com';
 const GITHUB_GRAPHQL_BASE = 'https://api.github.com/graphql';
 
-const getHeaders = () => {
-  const headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.github.v3+json',
-  };
-  
-  // Only add Authorization header if token is provided and not empty
-  const token = process.env.GITHUB_TOKEN?.trim();
-  if (token && token.length > 0) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-  
-  return headers;
-};
+const getHeaders = () => ({
+  Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+  'Content-Type': 'application/json',
+});
 
 
 
