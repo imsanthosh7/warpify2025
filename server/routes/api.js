@@ -20,11 +20,14 @@ router.get('/profile/:username', async (req, res) => {
         res.json(profile);
 
     } catch (error) {
-        console.error('Profile API Error:', error);
+        console.error('Profile API Error:', error.message);
 
-        // If GitHub API explicitly gives 404
-        if (error.status === 404 || error.message === "Not Found") {
-            return res.status(404).json({ error: "User not found" });
+        if (error.response) {
+            const status = error.response.status;
+            return res.status(status).json({
+                error: error.response.data.message || 'GitHub API Error',
+                details: error.response.data
+            });
         }
 
         res.status(500).json({ error: 'Failed to fetch profile', details: error.message });
@@ -88,10 +91,14 @@ router.get('/stats/:username', async (req, res) => {
         res.json(processedData);
 
     } catch (error) {
-        console.error('Stats API Error:', error);
+        console.error('Stats API Error:', error.message);
 
-        if (error.status === 404 || error.message === "Not Found") {
-            return res.status(404).json({ error: "User not found" });
+        if (error.response) {
+            const status = error.response.status;
+            return res.status(status).json({
+                error: error.response.data.message || 'GitHub API Error',
+                details: error.response.data
+            });
         }
 
         res.status(500).json({ error: 'Failed to fetch stats', details: error.message });

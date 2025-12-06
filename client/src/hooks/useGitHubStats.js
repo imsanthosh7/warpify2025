@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-const API_BASE = 'http://localhost:3000/api';
+// Use environment variable for API base URL, fallback to localhost for development
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 
+                 (import.meta.env.DEV ? 'http://localhost:3000/api' : '/api');
 
 export const useGitHubStats = (username) => {
     const [stats, setStats] = useState(null);

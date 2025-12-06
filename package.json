@@ -1,0 +1,25 @@
+{
+  "name": "github-wrapped-2025",
+  "version": "1.0.0",
+  "description": "GitHub Wrapped 2025 - A modern bento-style GitHub stats generator",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": [
+    "github",
+    "wrapped",
+    "stats",
+    "github-api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+

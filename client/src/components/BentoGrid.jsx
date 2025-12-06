@@ -12,12 +12,12 @@ const colorThemes = {
     midnight: {
         name: 'Midnight',
         containerBg: 'bg-gradient-to-br from-slate-900 via-gray-950 to-black',
-        card1: 'bg-gradient-to-br from-slate-800/40 via-gray-900/30 to-black/40',
-        card2: 'bg-gradient-to-br from-gray-900/40 via-slate-900/30 to-black/40',
-        card3: 'bg-gradient-to-br from-zinc-900/40 via-gray-900/30 to-black/40',
-        card4: 'bg-gradient-to-br from-neutral-900/40 via-gray-900/30 to-black/40',
-        card5: 'bg-gradient-to-br from-slate-900/40 via-gray-900/30 to-black/40',
-        preview: 'bg-gradient-to-r from-cyan-500 to-blue-700',
+        card1: 'bg-gradient-to-br from-slate-800/20 via-gray-900/15 to-black/20',
+        card2: 'bg-gradient-to-br from-gray-900/20 via-slate-900/15 to-black/20',
+        card3: 'bg-gradient-to-br from-zinc-900/20 via-gray-900/15 to-black/20',
+        card4: 'bg-gradient-to-br from-neutral-900/20 via-gray-900/15 to-black/20',
+        card5: 'bg-gradient-to-br from-slate-900/20 via-gray-900/15 to-black/20',
+        preview: 'bg-gradient-to-br from-slate-900 via-gray-950 to-black',
         iconColor: 'text-cyan-300',
         textGradient: 'from-cyan-300 to-slate-300',
         profileBorder: 'border-cyan-500',
@@ -31,12 +31,12 @@ const colorThemes = {
 
     ocean: {
         name: 'Ocean',
-        containerBg: 'bg-gradient-to-br from-teal-600/10 via-cyan-600/5 to-blue-700/10',
-        card1: 'bg-gradient-to-br from-teal-600/25 via-blue-600/20 to-cyan-600/25',
-        card2: 'bg-gradient-to-br from-blue-600/25 via-cyan-600/20 to-teal-600/25',
-        card3: 'bg-gradient-to-br from-cyan-600/25 via-teal-600/20 to-blue-600/25',
-        card4: 'bg-gradient-to-br from-indigo-600/25 via-blue-600/20 to-cyan-600/25',
-        card5: 'bg-gradient-to-br from-blue-600/25 via-indigo-600/20 to-sky-600/25',
+        containerBg: 'bg-gradient-to-br from-teal-600/5 via-cyan-600/5 to-blue-700/5',
+        card1: 'bg-gradient-to-br from-teal-600/10 via-blue-600/10 to-cyan-600/10',
+        card2: 'bg-gradient-to-br from-blue-600/10 via-cyan-600/10 to-teal-600/10',
+        card3: 'bg-gradient-to-br from-cyan-600/10 via-teal-600/10 to-blue-600/10',
+        card4: 'bg-gradient-to-br from-indigo-600/10 via-blue-600/10 to-cyan-600/10',
+        card5: 'bg-gradient-to-br from-blue-600/10 via-indigo-600/10 to-sky-600/10',
         preview: 'bg-gradient-to-r from-teal-500 to-blue-600',
         iconColor: 'text-teal-300',
         textGradient: 'from-teal-300 to-cyan-300',
@@ -51,12 +51,12 @@ const colorThemes = {
 
     sunset: {
         name: 'Sunset',
-        containerBg: 'bg-gradient-to-br from-orange-600/10 via-rose-600/5 to-red-700/10',
-        card1: 'bg-gradient-to-br from-orange-600/25 via-red-600/20 to-rose-600/25',
-        card2: 'bg-gradient-to-br from-red-600/25 via-orange-600/20 to-amber-600/25',
-        card3: 'bg-gradient-to-br from-rose-600/25 via-red-600/20 to-orange-600/25',
-        card4: 'bg-gradient-to-br from-amber-600/25 via-orange-600/20 to-red-600/25',
-        card5: 'bg-gradient-to-br from-orange-600/25 via-pink-600/20 to-purple-600/25',
+        containerBg: 'bg-gradient-to-br from-orange-600/5 via-rose-600/5 to-red-700/5',
+        card1: 'bg-gradient-to-br from-orange-600/10 via-red-600/10 to-rose-600/10',
+        card2: 'bg-gradient-to-br from-red-600/10 via-orange-600/10 to-amber-600/10',
+        card3: 'bg-gradient-to-br from-rose-600/10 via-red-600/10 to-orange-600/10',
+        card4: 'bg-gradient-to-br from-amber-600/10 via-orange-600/10 to-red-600/10',
+        card5: 'bg-gradient-to-br from-orange-600/10 via-pink-600/10 to-purple-600/10',
         preview: 'bg-gradient-to-r from-orange-500 to-red-600',
         iconColor: 'text-orange-300',
         textGradient: 'from-orange-300 to-red-300',
@@ -71,12 +71,12 @@ const colorThemes = {
 
     forest: {
         name: 'Forest',
-        containerBg: 'bg-gradient-to-br from-green-700/10 via-emerald-700/5 to-teal-700/10',
-        card1: 'bg-gradient-to-br from-green-700/25 via-emerald-700/20 to-teal-700/25',
-        card2: 'bg-gradient-to-br from-emerald-700/25 via-green-700/20 to-lime-700/25',
-        card3: 'bg-gradient-to-br from-teal-700/25 via-green-700/20 to-emerald-700/25',
-        card4: 'bg-gradient-to-br from-lime-600/25 via-green-700/20 to-emerald-700/25',
-        card5: 'bg-gradient-to-br from-green-700/25 via-teal-700/20 to-cyan-700/25',
+        containerBg: 'bg-gradient-to-br from-green-700/5 via-emerald-700/5 to-teal-700/5',
+        card1: 'bg-gradient-to-br from-green-700/10 via-emerald-700/10 to-teal-700/10',
+        card2: 'bg-gradient-to-br from-emerald-700/10 via-green-700/10 to-lime-700/10',
+        card3: 'bg-gradient-to-br from-teal-700/10 via-green-700/10 to-emerald-700/10',
+        card4: 'bg-gradient-to-br from-lime-600/10 via-green-700/10 to-emerald-700/10',
+        card5: 'bg-gradient-to-br from-green-700/10 via-teal-700/10 to-cyan-700/10',
         preview: 'bg-gradient-to-r from-green-600 to-emerald-700',
         iconColor: 'text-emerald-300',
         textGradient: 'from-emerald-300 to-green-300',
@@ -91,12 +91,12 @@ const colorThemes = {
 
     purple: {
         name: 'Purple',
-        containerBg: 'bg-gradient-to-br from-purple-700/10 via-pink-700/5 to-indigo-700/10',
-        card1: 'bg-gradient-to-br from-purple-700/25 via-pink-600/20 to-indigo-700/25',
-        card2: 'bg-gradient-to-br from-indigo-700/25 via-purple-700/20 to-pink-700/25',
-        card3: 'bg-gradient-to-br from-pink-700/25 via-purple-700/20 to-indigo-700/25',
-        card4: 'bg-gradient-to-br from-fuchsia-600/25 via-purple-700/20 to-pink-700/25',
-        card5: 'bg-gradient-to-br from-purple-700/25 via-indigo-700/20 to-blue-700/25',
+        containerBg: 'bg-gradient-to-br from-purple-700/5 via-pink-700/5 to-indigo-700/5',
+        card1: 'bg-gradient-to-br from-purple-700/10 via-pink-600/10 to-indigo-700/10',
+        card2: 'bg-gradient-to-br from-indigo-700/10 via-purple-700/10 to-pink-700/10',
+        card3: 'bg-gradient-to-br from-pink-700/10 via-purple-700/10 to-indigo-700/10',
+        card4: 'bg-gradient-to-br from-fuchsia-600/10 via-purple-700/10 to-pink-700/10',
+        card5: 'bg-gradient-to-br from-purple-700/10 via-indigo-700/10 to-blue-700/10',
         preview: 'bg-gradient-to-r from-purple-500 to-pink-600',
         iconColor: 'text-purple-300',
         textGradient: 'from-purple-300 to-pink-300',
@@ -176,7 +176,7 @@ const BentoGrid = ({ stats, profile }) => {
 
     return (
         <div className="w-full max-w-4xl mx-auto p-4 relative">
-            <div className="flex justify-end gap-2 mb-4 relative">
+            <div className="flex md:justify-end justify-center gap-2  mb-4 relative">
                 {/* Color Theme Picker */}
                 <div className="relative color-picker-container">
                     <button
@@ -188,7 +188,7 @@ const BentoGrid = ({ stats, profile }) => {
                     </button>
 
                     {showColorPicker && (
-                        <div className="absolute right-0 top-12 bg-dark-card border border-white/10 rounded-xl p-3 shadow-xl z-50 min-w-[200px]">
+                        <div className="absolute md:right-0 top-12 bg-dark-card border border-white/10 rounded-xl p-3 shadow-xl z-50 min-w-[200px]">
                             <div className="text-xs text-dark-muted uppercase tracking-wider mb-2 px-2">Choose Theme</div>
                             <div className="space-y-2">
                                 {Object.entries(colorThemes).map(([key, theme]) => (
@@ -206,7 +206,7 @@ const BentoGrid = ({ stats, profile }) => {
                                         <div className={`w-8 h-8 rounded-lg ${theme.preview} flex-shrink-0`} />
                                         <span className="text-sm text-white">{theme.name}</span>
                                         {selectedTheme === key && (
-                                            <div className="ml-auto w-2 h-2 rounded-full bg-brand-teal" />
+                                            <div className={`ml-auto w-2 h-2 rounded-full ${theme.preview}`} />
                                         )}
                                     </button>
                                 ))}

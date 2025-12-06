@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/dist",
+  "installCommand": "npm install && cd server && npm install && cd ../client && npm install",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/profile/(.*)",
+      "destination": "/api/profile/$1"
+    },
+    {
+      "source": "/api/stats/(.*)",
+      "destination": "/api/stats/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
