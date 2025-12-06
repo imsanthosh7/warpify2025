@@ -1,10 +1,9 @@
 {
     "name": "github-wrapped-root",
     "private": true,
-    "scripts": {
-        "vercel-build": "cd client && npm install && npm run build"
-    },
-    "engines": {
-        "node": ">=18"
-    }
+    "vercel-build": "npm install --prefix client && npm run build --prefix client"
+},
+"engines": {
+    "node": ">=18"
+}
 }
