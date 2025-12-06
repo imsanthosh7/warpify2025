@@ -296,7 +296,7 @@ const BentoGrid = ({ stats, profile }) => {
                 </div>
 
                 <div className="mt-8 text-center text-dark-muted text-sm">
-                    github-wrapped-2025.vercel.app
+                    github-wrapped-2025
                 </div>
             </div>
             <Confetti

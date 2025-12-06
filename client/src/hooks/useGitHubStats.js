@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 
 export const useGitHubStats = (username) => {
     const [stats, setStats] = useState(null);
@@ -30,7 +30,7 @@ export const useGitHubStats = (username) => {
                 try {
                     const errJson = await profileRes.json();
                     msg = errJson.error || msg;
-                } catch (_) {}
+                } catch (_) { }
 
                 // Detect 404 specifically
                 if (profileRes.status === 404) {
