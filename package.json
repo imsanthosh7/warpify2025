@@ -1,5 +1,6 @@
 {
     "name": "github-wrapped-root",
+    "description": "GitHub Wrapped 2025 - Root package",
     "private": true,
     "scripts": {
         "vercel-build": "npm install --prefix client && npm run build --prefix client"
