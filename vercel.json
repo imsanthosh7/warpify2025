@@ -1,17 +1,16 @@
 {
   "version": 2,
-  "buildCommand": "cd client && npm install && npm run build",
+  "buildCommand": "npm run vercel-build",
   "outputDirectory": "client/dist",
-  "installCommand": "npm install && cd client && npm install",
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/api/profile/(.*)",
-      "destination": "/api/profile/$1"
+      "source": "/api/profile/:username",
+      "destination": "/api/profile/[username]"
     },
     {
-      "source": "/api/stats/(.*)",
-      "destination": "/api/stats/$1"
+      "source": "/api/stats/:username",
+      "destination": "/api/stats/[username]"
     },
     {
       "source": "/(.*)",
@@ -19,4 +18,3 @@
     }
   ]
 }
-
