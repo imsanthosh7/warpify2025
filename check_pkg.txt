@@ -1,0 +1,1 @@
+﻿{"name":"github-wrapped-root","description":"GitHub Wrapped 2025","private":true,"scripts":{"vercel-build":"npm install --prefix client && npm run build --prefix client"},"engines":{"node":">=18"}}
