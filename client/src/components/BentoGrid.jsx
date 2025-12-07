@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Confetti } from '@/components/ui/confetti';
 import { toPng } from 'html-to-image';
 import { motion } from 'framer-motion';
-import { GitCommit, GitPullRequest, AlertCircle, Star, Code2, Share2, Download, Palette } from 'lucide-react';
+import { GitCommit, GitPullRequest, AlertCircle, Star, Code2, Download, Palette, Loader2 } from 'lucide-react';
 import StatCard from './StatCard';
 import Heatmap from './Heatmap';
 
@@ -115,6 +115,7 @@ const BentoGrid = ({ stats, profile }) => {
     const confettiRef = useRef(null);
     const [selectedTheme, setSelectedTheme] = useState('midnight');
     const [showColorPicker, setShowColorPicker] = useState(false);
+    const [downloading, setDownloading] = useState(false);
 
     useEffect(() => {
         if (confettiRef.current) {
@@ -139,36 +140,60 @@ const BentoGrid = ({ stats, profile }) => {
     const handleDownload = async () => {
         if (ref.current === null) return;
 
+        setDownloading(true);
         try {
+            // Store original styles
+            const originalWidth = ref.current.style.width;
+            const originalMinWidth = ref.current.style.minWidth;
+
+            // Force desktop width for consistent layout (896px = max-w-4xl equivalent)
+            ref.current.style.width = '896px';
+            ref.current.style.minWidth = '896px';
+
+            // Force grid to 2 columns (override Tailwind responsive classes)
+            const gridElement = ref.current.querySelector('.grid');
+            const heatmapElement = ref.current.querySelector('.grid > div:last-child');
+
+            let originalGridCols = '';
+            let originalHeatmapColSpan = '';
+
+            if (gridElement) {
+                originalGridCols = gridElement.style.gridTemplateColumns;
+                gridElement.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+            }
+            if (heatmapElement) {
+                originalHeatmapColSpan = heatmapElement.style.gridColumn;
+                heatmapElement.style.gridColumn = 'span 2 / span 2';
+            }
+
+            // Wait for layout to reflow
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             const dataUrl = await toPng(ref.current, { cacheBust: true, pixelRatio: 2 });
+
+            // Restore original styles
+            ref.current.style.width = originalWidth;
+            ref.current.style.minWidth = originalMinWidth;
+            if (gridElement) gridElement.style.gridTemplateColumns = originalGridCols;
+            if (heatmapElement) heatmapElement.style.gridColumn = originalHeatmapColSpan;
+
             const link = document.createElement('a');
             link.download = `${profile.login}-wrapped-2025.png`;
             link.href = dataUrl;
             link.click();
         } catch (err) {
             console.error('Failed to generate image', err);
-        }
-    };
-
-    const handleShare = async () => {
-        if (ref.current === null) return;
-
-        try {
-            const dataUrl = await toPng(ref.current, { cacheBust: true, pixelRatio: 2 });
-            const blob = await (await fetch(dataUrl)).blob();
-            const file = new File([blob], 'wrapped.png', { type: 'image/png' });
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    files: [file],
-                    title: 'My GitHub Wrapped 2025',
-                    text: 'Check out my GitHub stats for 2025!',
-                });
-            } else {
-                alert('Sharing not supported on this device/browser.');
+            // Restore styles on error too
+            if (ref.current) {
+                ref.current.style.width = '';
+                ref.current.style.minWidth = '';
+                const gridElement = ref.current.querySelector('.grid');
+                const heatmapElement = ref.current.querySelector('.grid > div:last-child');
+                if (gridElement) gridElement.style.gridTemplateColumns = '';
+                if (heatmapElement) heatmapElement.style.gridColumn = '';
             }
-        } catch (err) {
-            console.error('Failed to share', err);
+        } finally {
+            setDownloading(false);
         }
     };
 
@@ -215,11 +240,13 @@ const BentoGrid = ({ stats, profile }) => {
                     )}
                 </div>
 
-                <button onClick={handleShare} className="flex items-center gap-2 px-4 py-2 bg-dark-card rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
-                    <Share2 className="w-4 h-4" /> Share
-                </button>
-                <button onClick={handleDownload} className="flex items-center gap-2 px-4 py-2 bg-brand-blue rounded-full text-sm font-medium text-white hover:bg-brand-blue/90 transition-colors">
-                    <Download className="w-4 h-4" /> Download
+                <button
+                    onClick={handleDownload}
+                    disabled={downloading}
+                    className="flex items-center gap-2 px-4 py-2 bg-brand-blue rounded-full text-sm font-medium text-white hover:bg-brand-blue/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                    {downloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+                    {downloading ? 'Downloading' : 'Download'}
                 </button>
             </div>
 
@@ -238,17 +265,16 @@ const BentoGrid = ({ stats, profile }) => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Card 1: Total Contributions */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Row 1: Total Contributions + Top Language */}
                     <StatCard
                         title="Total Contributions"
                         value={stats.totalContributions}
                         icon={GitCommit}
-                        className={`md:col-span-2 ${currentTheme.card1}`}
+                        className={currentTheme.card1}
                         iconColor={currentTheme.iconColor}
                     />
 
-                    {/* Card 2: Top Language */}
                     <StatCard
                         title="Top Language"
                         value={stats.topLanguages[0]?.name || 'N/A'}
@@ -258,7 +284,7 @@ const BentoGrid = ({ stats, profile }) => {
                         iconColor={currentTheme.iconColor}
                     />
 
-                    {/* Card 3: Most Active Repo */}
+                    {/* Row 2: Most Active Repo + Top Languages */}
                     <StatCard
                         title="Most Active Repo"
                         value={stats.mostActiveRepo?.name || 'N/A'}
@@ -268,8 +294,7 @@ const BentoGrid = ({ stats, profile }) => {
                         iconColor={currentTheme.iconColor}
                     />
 
-                    {/* Card 4: Top Languages */}
-                    <div className={`bento-card md:col-span-2 flex flex-col justify-center ${currentTheme.card4}`}>
+                    <div className={`bento-card flex flex-col justify-center ${currentTheme.card4}`}>
                         <h3 className="text-dark-muted text-sm font-medium uppercase tracking-wider mb-4">Top Languages</h3>
                         <div className="space-y-3">
                             {stats.topLanguages.slice(0, 3).map((lang, i) => (
@@ -277,7 +302,7 @@ const BentoGrid = ({ stats, profile }) => {
                                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: lang.color }} />
                                     <div className="flex-1 text-sm font-medium">{lang.name}</div>
                                     <div className="text-xs text-dark-muted">{Math.round(lang.size / 1000)}k lines</div>
-                                    <div className="w-32 h-2 bg-dark-bg rounded-full overflow-hidden">
+                                    <div className="w-24 h-2 bg-dark-bg rounded-full overflow-hidden">
                                         <motion.div
                                             initial={{ scaleX: 0 }}
                                             animate={{ scaleX: lang.size / stats.topLanguages[0].size }}
@@ -291,12 +316,12 @@ const BentoGrid = ({ stats, profile }) => {
                         </div>
                     </div>
 
-                    {/* Card 5: Heatmap */}
-                    <Heatmap weeks={stats.weeks} className={currentTheme.card5} heatmapColors={currentTheme.heatmapColors} />
+                    {/* Row 3: Heatmap (full width) */}
+                    <Heatmap weeks={stats.weeks} className={`col-span-1 md:col-span-2 ${currentTheme.card5}`} heatmapColors={currentTheme.heatmapColors} />
                 </div>
 
                 <div className="mt-8 text-center text-dark-muted text-sm">
-                    github-wrapped-2025
+                    warpify2025.vercel.app
                 </div>
             </div>
             <Confetti
