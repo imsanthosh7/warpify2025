@@ -4,7 +4,7 @@
 
 ### Your Year in Code, Beautifully Visualized ✨
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-4CAF50?style=for-the-badge)](https://your-site.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-4CAF50?style=for-the-badge)](https://warpify2025.vercel.app/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
@@ -108,7 +108,7 @@ github-wrapped-2025/
 ## 🎨 Screenshots
 
 <div align="center">
-<i>Coming soon...</i>
+<img src="https://github.com/user-attachments/assets/6908882d-dc91-49b7-a2d8-f692728acaf9" alt="GitHub Wrapped 2025 Preview" width="700" />
 </div>
 
 ---
