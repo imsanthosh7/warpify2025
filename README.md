@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎁 GitHub Wrapped 2025
+# GitHub Wrapped 2025 🎉
 
 ### Your Year in Code, Beautifully Visualized ✨
 
