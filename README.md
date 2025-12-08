@@ -127,14 +127,10 @@ Contributions are welcome! Feel free to:
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** 
 
 ---
 
 <div align="center">
-
-**Made with ❤️ by [Santhosh](https://github.com/imsanthosh7)**
-
 ⭐ Star this repo if you found it helpful!
-
 </div>
