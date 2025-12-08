@@ -43,7 +43,7 @@
 | ⚛️ React 18 | 🟢 Node.js |
 | ⚡ Vite | 🚀 Express |
 | 🎨 TailwindCSS | 📡 GitHub GraphQL API |
-| 🎬 Framer Motion | 🔐 OAuth 2.0 |
+| 🎬 Framer Motion 
 
 </div>
 
