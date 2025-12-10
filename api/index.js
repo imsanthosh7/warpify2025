@@ -138,6 +138,8 @@ module.exports = async (req, res) => {
                 .sort((a, b) => b.size - a.size)
                 .slice(0, 5);
 
+            const mostActiveRepo = repos.length > 0 ? repos[0] : null;
+
             // Calculate Longest Streak, Most Active Day, and Most Active Month
             let longestStreak = 0;
             let currentStreak = 0;
