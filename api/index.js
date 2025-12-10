@@ -138,13 +138,67 @@ module.exports = async (req, res) => {
                 .sort((a, b) => b.size - a.size)
                 .slice(0, 5);
 
-            const mostActiveRepo = repos.length > 0 ? repos[0] : null;
+            // Calculate Longest Streak, Most Active Day, and Most Active Month
+            let longestStreak = 0;
+            let currentStreak = 0;
+            let mostActiveDay = { date: '', count: 0 };
+            const monthCounts = {};
+
+            // Flatten weeks into a single array of days
+            const allDays = weeks.flatMap(week => week.contributionDays);
+
+            allDays.forEach(day => {
+                // Longest Streak
+                if (day.contributionCount > 0) {
+                    currentStreak++;
+                } else {
+                    longestStreak = Math.max(longestStreak, currentStreak);
+                    currentStreak = 0;
+                }
+                // Check strictly for final streak if the year ends with contributions
+                longestStreak = Math.max(longestStreak, currentStreak);
+
+
+                // Most Active Day
+                if (day.contributionCount > mostActiveDay.count) {
+                    mostActiveDay = { date: day.date, count: day.contributionCount };
+                }
+
+                // Most Active Month
+                const monthKey = day.date.substring(0, 7); // YYYY-MM
+                if (!monthCounts[monthKey]) {
+                    monthCounts[monthKey] = 0;
+                }
+                monthCounts[monthKey] += day.contributionCount;
+            });
+
+            let mostActiveMonth = { month: '', count: 0 };
+            Object.entries(monthCounts).forEach(([month, count]) => {
+                if (count > mostActiveMonth.count) {
+                    mostActiveMonth = { month, count };
+                }
+            });
+
+            // Calculate Power Level
+            // Formula: Total Contributions + (Longest Streak * 10) + (Most Active Day * 20)
+            // Adjust weights as needed for "fun" factor
+            const powerLevel = totalContributions + (longestStreak * 10) + (mostActiveDay.count * 20);
+
+            let powerTitle = 'Ninja';
+            if (powerLevel > 10000) powerTitle = 'God Mode';
+            else if (powerLevel > 5000) powerTitle = 'Super Saiyan';
+            else if (powerLevel > 1000) powerTitle = 'Sage Mode';
 
             const processedData = {
                 totalContributions,
                 weeks,
                 topLanguages,
                 mostActiveRepo,
+                longestStreak,
+                mostActiveDay,
+                mostActiveMonth,
+                powerLevel,
+                powerTitle
             };
 
             cache.set(username, { data: processedData, timestamp: Date.now() });
