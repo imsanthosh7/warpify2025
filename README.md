@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🎁 GitHub Wrapped 2025
+# GitHub Wrapped 2025 🎉
 
 ### Your Year in Code, Beautifully Visualized ✨
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-4CAF50?style=for-the-badge)](https://your-site.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-4CAF50?style=for-the-badge)](https://warpify2025.vercel.app/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
@@ -43,7 +43,7 @@
 | ⚛️ React 18 | 🟢 Node.js |
 | ⚡ Vite | 🚀 Express |
 | 🎨 TailwindCSS | 📡 GitHub GraphQL API |
-| 🎬 Framer Motion | 🔐 OAuth 2.0 |
+| 🎬 Framer Motion 
 
 </div>
 
@@ -108,7 +108,7 @@ github-wrapped-2025/
 ## 🎨 Screenshots
 
 <div align="center">
-<i>Coming soon...</i>
+<img src="https://github.com/user-attachments/assets/6908882d-dc91-49b7-a2d8-f692728acaf9" alt="GitHub Wrapped 2025 Preview" width="700" />
 </div>
 
 ---
@@ -127,14 +127,10 @@ Contributions are welcome! Feel free to:
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** 
 
 ---
 
 <div align="center">
-
-**Made with ❤️ by [Santhosh](https://github.com/imsanthosh7)**
-
 ⭐ Star this repo if you found it helpful!
-
 </div>
