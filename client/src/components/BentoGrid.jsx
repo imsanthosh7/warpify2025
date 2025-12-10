@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Confetti } from '@/components/ui/confetti';
 import { toPng } from 'html-to-image';
 import { motion } from 'framer-motion';
-import { GitCommit, GitPullRequest, AlertCircle, Star, Code2, Download, Palette, Loader2 } from 'lucide-react';
+import { GitCommit, GitPullRequest, AlertCircle, Star, Code2, Download, Palette, Loader2, Flame, Calendar, Zap, Trophy } from 'lucide-react';
 import StatCard from './StatCard';
 import Heatmap from './Heatmap';
 
@@ -315,6 +315,44 @@ const BentoGrid = ({ stats, profile }) => {
                             ))}
                         </div>
                     </div>
+
+                    {/* Row 3: Longest Streak + Power Level */}
+                    <StatCard
+                        title="Longest Streak"
+                        value={`${stats.longestStreak} Days`}
+                        subtext="Consecutive days"
+                        icon={Flame}
+                        className={currentTheme.card1}
+                        iconColor={currentTheme.iconColor}
+                    />
+
+                    <StatCard
+                        title="Power Level"
+                        value={stats.powerTitle || 'Ninja'}
+                        subtext={`Score: ${stats.powerLevel?.toLocaleString() || '0'}`}
+                        icon={Zap}
+                        className={currentTheme.card2}
+                        iconColor={currentTheme.iconColor}
+                    />
+
+                    {/* Row 4: Most Active Day + Most Active Month */}
+                    <StatCard
+                        title="Most Active Day"
+                        value={new Date(stats.mostActiveDay?.date).toLocaleDateString('en-US', { weekday: 'long' })}
+                        subtext={`${stats.mostActiveDay?.count || 0} contributions`}
+                        icon={Calendar}
+                        className={currentTheme.card3}
+                        iconColor={currentTheme.iconColor}
+                    />
+
+                    <StatCard
+                        title="Most Active Month"
+                        value={new Date(stats.mostActiveMonth?.month + '-01').toLocaleDateString('en-US', { month: 'long' })}
+                        subtext={`${stats.mostActiveMonth?.count || 0} contributions`}
+                        icon={Trophy}
+                        className={currentTheme.card4}
+                        iconColor={currentTheme.iconColor}
+                    />
 
                     {/* Row 3: Heatmap (full width) */}
                     <Heatmap weeks={stats.weeks} className={`col-span-1 md:col-span-2 ${currentTheme.card5}`} heatmapColors={currentTheme.heatmapColors} />
